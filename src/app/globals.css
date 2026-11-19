@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #2f4538;
+  --color-forest-dark: #1f2e25;
+  --color-forest-deep: #16231b;
+  --color-ember: #d98a3d;
+  --color-ember-dark: #b8702b;
+  --color-cream: #faf7f0;
+  --color-sand: #f0e9d8;
+  --color-sand-dark: #e2d7bf;
+  --color-ink: #26332b;
+  --color-muted: #5f6b62;
+}
+
+@theme inline {
+  --font-sans: var(--font-khmer-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-khmer-serif), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem; /* sticky header height */
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  /* Khmer needs extra line height for stacked subscript consonants */
+  line-height: 1.8;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.5;
+}
+
+.text-glow {
+  text-shadow: 0 2px 18px rgb(0 0 0 / 0.45);
+}
