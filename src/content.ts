@@ -19,28 +19,40 @@ export const t = (text: Text, lang: Lang) => text[lang];
 // Business info
 // ------------------------------------------------------------------
 export const business = {
-  name: { km: "ជំនោបឹងធំ", en: "Chamnob Boeng Thom" },
+  name: { km: "ជំនោរបឹងធំ", en: "Chamnob Boeng Thom" },
   tagline: {
     km: "អាហារខ្មែរធម្មជាតិ ក្បែរមាត់បឹង ក្រោមម្លប់ដូង",
     en: "Natural Khmer food by the lake, under the coconut palms",
   },
   /** Used for SEO meta description & Facebook link previews. */
   seoDescription: {
-    km: "ជំនោបឹងធំ — ភោជនីយដ្ឋានខ្មែរបែបធម្មជាតិ ក្បែរមាត់បឹង ក្រោមម្លប់ដូង ក្នុងខេត្តកំពង់ចាម។ ល្បីល្បាញដោយទេសភាពថ្ងៃលិច។ បើករៀងរាល់ថ្ងៃ ២៤ម៉ោង។ ទូរស័ព្ទ ០១២ ៣៧២ ៤៨៩",
+    km: "ជំនោរបឹងធំ — ភោជនីយដ្ឋានខ្មែរបែបធម្មជាតិ ក្បែរមាត់បឹង ក្រោមម្លប់ដូង ក្នុងខេត្តកំពង់ចាម។ ល្បីល្បាញដោយទេសភាពថ្ងៃលិច។ បើករៀងរាល់ថ្ងៃ ២៤ម៉ោង។ ទូរស័ព្ទ ០១២ ៣៧២ ៤៨៩",
     en: "Chamnob Boeng Thom — a countryside Khmer restaurant by the lake under coconut palms in Kampong Cham, Cambodia. Famous for sunset views. Open 24 hours, every day. Tel 012 372 489.",
   },
-  phone: {
-    display: "012 372 489",
-    tel: "tel:012372489",
-    international: "+855 12 372 489",
-  },
+  /** Contact numbers. The FIRST one is primary — used by the Hero "Call Us"
+   *  button, header, mobile action bar, footer and SEO data. All numbers are
+   *  listed in the Location & Contact section. */
+  phones: [
+    {
+      label: { km: "លេខចម្បង", en: "Primary" },
+      display: "012 372 489",
+      tel: "tel:012372489",
+      international: "+855 12 372 489",
+    },
+    {
+      label: { km: "លេខទីពីរ", en: "Secondary" },
+      display: "087 339 091",
+      tel: "tel:087339091",
+      international: "+855 87 339 091",
+    },
+  ],
   facebook: "https://facebook.com/profile.php?id=61595489751142",
   location: {
     lat: 12.0144852,
     lng: 105.3568384,
     address: {
-      km: "[PLACEHOLDER — need exact address] ក្បែរសាលាឃុំវិហារធំ ខេត្តកំពង់ចាម",
-      en: "[PLACEHOLDER — need exact address] Near Vihear Thom Commune Hall, Kampong Cham, Cambodia",
+      km: "ភូមិ ក្ដីបឹង ឃុំវិហារធំ ស្រុកកំពង់សៀម ខេត្តកំពង់ចាម (ក្បែរសាលាឃុំវិហារធំ)",
+      en: "Kdei Boeng village, Vihear Thom commune, Kampong Siem district, Kampong Cham province (near Vihear Thom Commune Hall)",
     },
     region: { km: "ខេត្តកំពង់ចាម", en: "Kampong Cham" },
   },
@@ -50,6 +62,9 @@ export const business = {
     en: "Dine-in • Takeout • No delivery",
   },
 };
+
+/** The primary phone number (compact CTAs link only to this one). */
+export const primaryPhone = business.phones[0];
 
 export const mapLinks = {
   /** Opens Google Maps app / site at the pin. */
@@ -88,10 +103,10 @@ export const hero = {
    * Optional hero photo (e.g. "/images/hero.jpg"). Leave empty to use
    * the built-in illustrated sunset scene (0 KB of image download).
    */
-  image: "",
+  image: "/images/sunset-lake.png",
   imageAlt: {
-    km: "ទេសភាពថ្ងៃលិចលើបឹង នៅជំនោបឹងធំ",
-    en: "Sunset over the lake at Chamnob Boeng Thom",
+    km: "មេឃពណ៌ទឹកក្រូចឆ្អៅពេលថ្ងៃលិច ឆ្លុះលើផ្ទៃបឹង ជាមួយស្រមោលដើមឈើនៅមាត់បឹង នៅជំនោរបឹងធំ",
+    en: "Fiery orange sunset sky reflected on the lake, with silhouetted trees along the shore at Chamnob Boeng Thom",
   },
   eyebrow: { km: "ខេត្តកំពង់ចាម • បើក ២៤ម៉ោង", en: "Kampong Cham • Open 24/7" },
 };
@@ -104,7 +119,7 @@ export const about = {
   title: { km: "កន្លែងសម្រាកបែបជនបទ ក្បែរមាត់បឹង", en: "A countryside escape by the lake" },
   paragraphs: [
     {
-      km: "ជំនោបឹងធំ ជាកន្លែងញ៉ាំអាហារបែបធម្មជាតិ ស្ថិតនៅក្បែរមាត់បឹង ក្នុងខេត្តកំពង់ចាម។ នៅទីនេះ អ្នកនឹងបានអង្គុយញ៉ាំអាហារក្រោមម្លប់ដើមដូង ស្រូបខ្យល់បរិសុទ្ធពីផ្ទៃបឹង ឆ្ងាយពីភាពមមាញឹកនៃទីក្រុង។",
+      km: "ជំនោរបឹងធំ ជាកន្លែងញ៉ាំអាហារបែបធម្មជាតិ ស្ថិតនៅក្បែរមាត់បឹង ក្នុងខេត្តកំពង់ចាម។ នៅទីនេះ អ្នកនឹងបានអង្គុយញ៉ាំអាហារក្រោមម្លប់ដើមដូង ស្រូបខ្យល់បរិសុទ្ធពីផ្ទៃបឹង ឆ្ងាយពីភាពមមាញឹកនៃទីក្រុង។",
       en: "Chamnob Boeng Thom is a natural lakeside eatery in Kampong Cham province. Sit back under the shade of coconut palms, enjoy the fresh breeze off the water, and leave the busy city behind.",
     },
     {
@@ -232,15 +247,25 @@ export type GalleryItem = { src?: string; alt: Text };
 
 export const gallery = {
   eyebrow: { km: "រូបភាព", en: "Gallery" },
-  title: { km: "ទេសភាពនៅជំនោបឹងធំ", en: "Moments at Chamnob Boeng Thom" },
+  title: { km: "ទេសភាពនៅជំនោរបឹងធំ", en: "Moments at Chamnob Boeng Thom" },
   placeholderLabel: "[PLACEHOLDER — add photo]",
   items: [
-    { alt: { km: "ថ្ងៃលិចលើបឹង", en: "Sunset over the lake" } },
-    { alt: { km: "ម្លប់ដើមដូង", en: "Coconut palm shade" } },
-    { alt: { km: "ម្ហូបខ្មែរ", en: "Khmer dishes" } },
-    { alt: { km: "កន្លែងអង្គុយមាត់បឹង", en: "Lakeside seating" } },
-    { alt: { km: "ការជួបជុំគ្រួសារ", en: "Family gatherings" } },
-    { alt: { km: "ផ្ទៃបឹងពេលព្រឹក", en: "The lake in the morning" } },
+    {
+      src: "/images/hammock-hut.jpg",
+      alt: { km: "ខ្ទមប្រក់ស្លឹក មានអង្រឹងសម្រាកក្បែរមាត់បឹង", en: "Thatched hut with a hammock beside the lake" },
+    },
+    {
+      src: "/images/grounds-day.jpg",
+      alt: { km: "ទីធ្លាបៃតង និងខ្ទមប្រក់ស្លឹក ក្រោមមេឃពណ៌ខៀវ", en: "Green grounds and thatched huts under a clear blue sky" },
+    },
+    {
+      src: "/images/pond-fence.jpg",
+      alt: { km: "ស្រះទឹក និងរបងឫស្សី មើលទៅផ្ទៃបឹង", en: "Pond and bamboo fence looking out to the lake" },
+    },
+    {
+      src: "/images/backlit-sunrise.jpg",
+      alt: { km: "ពន្លឺថ្ងៃពណ៌មាសចាំងកាត់ស្លឹកឈើ ក្បែរដំបូលប្រក់ស្លឹក", en: "Golden sunlight through the leaves beside a thatched roof" },
+    },
   ] satisfies GalleryItem[],
 };
 
@@ -256,7 +281,7 @@ export const contact = {
     hours: { km: "ម៉ោងបើក", en: "Opening hours" },
     services: { km: "សេវាកម្ម", en: "Services" },
   },
-  mapTitle: { km: "ផែនទីទៅកាន់ជំនោបឹងធំ", en: "Map to Chamnob Boeng Thom" },
+  mapTitle: { km: "ផែនទីទៅកាន់ជំនោរបឹងធំ", en: "Map to Chamnob Boeng Thom" },
 };
 
 // ------------------------------------------------------------------

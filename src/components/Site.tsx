@@ -1,4 +1,4 @@
-import { business, mapLinks, t, ui, type Lang } from "@/content";
+import { business, primaryPhone, mapLinks, t, ui, type Lang } from "@/content";
 import { siteUrl } from "@/lib/siteUrl";
 import About from "./About";
 import Features from "./Features";
@@ -21,7 +21,7 @@ export default function Site({ lang }: { lang: Lang }) {
         switchLabel={t(ui.switchLang, lang)}
         switchAria={t(ui.switchLangAria, lang)}
         callLabel={t(ui.call, lang)}
-        tel={business.phone.tel}
+        tel={primaryPhone.tel}
         openLabel={t(ui.openMenu, lang)}
         closeLabel={t(ui.closeMenu, lang)}
       />
@@ -47,7 +47,7 @@ function MobileActionBar({ lang }: { lang: Lang }) {
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-sand-dark bg-cream/95 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur sm:hidden">
       <a
-        href={business.phone.tel}
+        href={primaryPhone.tel}
         className="flex items-center justify-center gap-2 rounded-full bg-ember py-3 font-semibold text-white"
       >
         <Icon name="phone" />
@@ -74,7 +74,7 @@ function StructuredData({ lang }: { lang: Lang }) {
     name: `${business.name.km} (${business.name.en})`,
     description: t(business.seoDescription, lang),
     url: lang === "km" ? siteUrl : `${siteUrl}/en`,
-    telephone: business.phone.international,
+    telephone: primaryPhone.international,
     servesCuisine: "Khmer",
     address: {
       "@type": "PostalAddress",

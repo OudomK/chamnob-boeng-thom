@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Icon from "./Icons";
@@ -41,9 +42,15 @@ export default function Header(p: Props) {
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
         <a href="#top" className="flex items-center gap-2 font-serif text-xl font-bold">
-          <span className="grid size-8 place-items-center rounded-full bg-ember text-cream">
-            <Icon name="palm" className="size-5" />
-          </span>
+          {/* Decorative (alt="") — the brand name is right next to it as text. */}
+          <Image
+            src="/images/logo.png"
+            alt=""
+            width={44}
+            height={44}
+            loading="eager"
+            className="size-11 shrink-0 rounded-full"
+          />
           {p.brand}
         </a>
 

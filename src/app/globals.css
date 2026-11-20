@@ -14,8 +14,9 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-khmer-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-khmer-serif), ui-serif, Georgia, serif;
+  /* Kantumruy Pro is unicode-range-limited to Khmer, so Latin falls through to Noto. */
+  --font-sans: var(--font-khmer), var(--font-khmer-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-khmer), var(--font-khmer-serif), ui-serif, Georgia, serif;
 }
 
 html {
@@ -45,4 +46,24 @@ h3 {
 
 .text-glow {
   text-shadow: 0 2px 18px rgb(0 0 0 / 0.45);
+}
+
+/*
+ * Hero entrance (see HeroEntrance.tsx): keep the hero text hidden until GSAP
+ * takes over, so it doesn't flash visible → hidden → animate in.
+ * Only applies when JS is enabled and the user allows motion. Failsafe: if JS
+ * is slow (rural connections), the text fades in by itself after
+ * --hero-failsafe-delay, so the hero is never left blank.
+ */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-hero-entrance]:not([data-hero-ready]) [data-hero-step] {
+    opacity: 0;
+    animation: hero-failsafe 0.6s ease-out var(--hero-failsafe-delay, 2.5s) forwards;
+  }
+}
+
+@keyframes hero-failsafe {
+  to {
+    opacity: 1;
+  }
 }

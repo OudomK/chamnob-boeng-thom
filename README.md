@@ -1,4 +1,4 @@
-# ជំនោបឹងធំ — Chamnob Boeng Thom
+# ជំនោរបឹងធំ — Chamnob Boeng Thom
 
 A one-page website for a lakeside Khmer restaurant in Kampong Cham. Built with Next.js (App Router), TypeScript and Tailwind CSS v4. Khmer is served at `/` and English at `/en`.
 

@@ -1,4 +1,5 @@
 import { menu, t, type Lang, type MenuCategory } from "@/content";
+import AnimatedSection from "./AnimatedSection";
 import Icon from "./Icons";
 import SectionHeading from "./SectionHeading";
 
@@ -7,12 +8,12 @@ export default function Menu({ lang }: { lang: Lang }) {
   const categories: MenuCategory[] = menu.categories;
 
   return (
-    <section id="menu" className="px-5 py-20 sm:py-28">
+    <AnimatedSection id="menu" className="px-5 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow={t(menu.eyebrow, lang)} title={t(menu.title, lang)} />
 
         {/* Quick category jump links — horizontally scrollable on phones */}
-        <nav className="-mx-5 mb-8 overflow-x-auto px-5">
+        <nav className="reveal-item -mx-5 mb-8 overflow-x-auto px-5">
           <ul className="flex w-max gap-2 sm:mx-auto">
             {categories.map((c) => (
               <li key={c.id}>
@@ -28,7 +29,7 @@ export default function Menu({ lang }: { lang: Lang }) {
           </ul>
         </nav>
 
-        <p className="mx-auto mb-10 max-w-2xl rounded-2xl border border-dashed border-ember/60 bg-ember/5 px-4 py-3 text-center text-sm text-ember-dark">
+        <p className="reveal-item mx-auto mb-10 max-w-2xl rounded-2xl border border-dashed border-ember/60 bg-ember/5 px-4 py-3 text-center text-sm text-ember-dark">
           {t(menu.note, lang)}
         </p>
 
@@ -37,7 +38,7 @@ export default function Menu({ lang }: { lang: Lang }) {
             <article
               key={c.id}
               id={`menu-${c.id}`}
-              className="rounded-3xl border border-sand-dark bg-white/60 p-6 sm:p-8"
+              className="reveal-item rounded-3xl border border-sand-dark bg-white/60 p-6 sm:p-8"
             >
               <h3 className="flex items-center gap-3 font-serif text-2xl font-bold text-forest">
                 <span className="grid size-10 place-items-center rounded-full bg-sand text-ember-dark">
@@ -66,6 +67,6 @@ export default function Menu({ lang }: { lang: Lang }) {
           ))}
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

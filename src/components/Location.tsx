@@ -1,27 +1,46 @@
-import { business, contact, mapLinks, t, ui, type Lang } from "@/content";
+import { business, contact, mapLinks, t, ui, type Lang, type Text } from "@/content";
+import AnimatedSection from "./AnimatedSection";
 import Icon from "./Icons";
 import SectionHeading from "./SectionHeading";
 
 export default function Location({ lang }: { lang: Lang }) {
-  const rows = [
-    { icon: "pin", label: contact.labels.address, value: t(business.location.address, lang) },
+  const rows: { icon: string; label: Text; content: React.ReactNode }[] = [
+    {
+      icon: "pin",
+      label: contact.labels.address,
+      content: <p className="font-medium">{t(business.location.address, lang)}</p>,
+    },
     {
       icon: "phone",
       label: contact.labels.phone,
-      value: business.phone.display,
-      href: business.phone.tel,
+      content: (
+        <ul className="space-y-1">
+          {business.phones.map((p) => (
+            <li key={p.tel} className="flex flex-wrap items-baseline gap-x-2">
+              <a href={p.tel} className="text-lg font-semibold underline-offset-4 hover:underline">
+                {p.display}
+              </a>
+              <span className="text-xs text-sand/60">{t(p.label, lang)}</span>
+            </li>
+          ))}
+        </ul>
+      ),
     },
-    { icon: "clock", label: contact.labels.hours, value: t(business.hours, lang) },
-    { icon: "utensils", label: contact.labels.services, value: t(business.services, lang) },
+    { icon: "clock", label: contact.labels.hours, content: <p className="font-medium">{t(business.hours, lang)}</p> },
+    {
+      icon: "utensils",
+      label: contact.labels.services,
+      content: <p className="font-medium">{t(business.services, lang)}</p>,
+    },
   ];
 
   return (
-    <section id="contact" className="px-5 py-20 sm:py-28">
+    <AnimatedSection id="contact" className="px-5 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow={t(contact.eyebrow, lang)} title={t(contact.title, lang)} />
 
         <div className="grid gap-6 lg:grid-cols-[1fr_1.4fr]">
-          <div className="rounded-3xl bg-forest p-6 text-cream sm:p-8">
+          <div className="reveal-item rounded-3xl bg-forest p-6 text-cream sm:p-8">
             <ul className="space-y-5">
               {rows.map((r) => (
                 <li key={r.icon} className="flex gap-4">
@@ -30,41 +49,35 @@ export default function Location({ lang }: { lang: Lang }) {
                   </span>
                   <div>
                     <p className="text-sm text-sand/70">{t(r.label, lang)}</p>
-                    {r.href ? (
-                      <a href={r.href} className="text-lg font-semibold underline-offset-4 hover:underline">
-                        {r.value}
-                      </a>
-                    ) : (
-                      <p className="font-medium">{r.value}</p>
-                    )}
+                    {r.content}
                   </div>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            <div className="mt-7 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               <a
                 href={mapLinks.google}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 rounded-full bg-ember px-5 py-3 font-semibold text-white transition-colors hover:bg-ember-dark"
+                className="flex min-h-10 items-center justify-center gap-2 rounded-full bg-ember px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-ember-dark"
               >
-                <Icon name="pin" />
+                <Icon name="pin" className="size-4" />
                 {t(ui.openInMaps, lang)}
               </a>
               <a
                 href={business.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 rounded-full border-2 border-cream/70 px-5 py-2.5 font-semibold transition-colors hover:bg-cream hover:text-forest"
+                className="flex min-h-10 items-center justify-center gap-2 rounded-full border border-cream/70 px-4 py-2 text-sm font-medium transition-colors hover:bg-cream hover:text-forest"
               >
-                <Icon name="facebook" />
+                <Icon name="facebook" className="size-4" />
                 Facebook
               </a>
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border border-sand-dark bg-sand">
+          <div className="reveal-item overflow-hidden rounded-3xl border border-sand-dark bg-sand">
             <iframe
               src={mapLinks.embed}
               title={t(contact.mapTitle, lang)}
@@ -75,6 +88,6 @@ export default function Location({ lang }: { lang: Lang }) {
           </div>
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

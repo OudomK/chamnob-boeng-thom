@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { gallery, t, type GalleryItem, type Lang } from "@/content";
+import AnimatedSection from "./AnimatedSection";
 import Icon from "./Icons";
 import SectionHeading from "./SectionHeading";
 
@@ -7,9 +8,12 @@ export default function Gallery({ lang }: { lang: Lang }) {
   const items: GalleryItem[] = gallery.items;
   // On the 2-column phone grid, stretch the last tile if it would be left alone.
   const lastIsOrphan = (items.length - 1) % 2 === 1;
+  // On the 3-column desktop grid, a 2×3 featured tile next to 3 stacked tiles
+  // fills every cell when there are exactly 4 photos; otherwise use 2×2.
+  const featuredRows = items.length === 4 ? "md:row-span-3" : "md:row-span-2";
 
   return (
-    <section id="gallery" className="bg-sand px-5 py-20 sm:py-28">
+    <AnimatedSection id="gallery" stagger={0.12} className="bg-sand px-5 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow={t(gallery.eyebrow, lang)} title={t(gallery.title, lang)} />
 
@@ -18,9 +22,9 @@ export default function Gallery({ lang }: { lang: Lang }) {
             <li
               key={i}
               // First tile is featured: spans 2 columns & rows on larger screens.
-              className={`relative overflow-hidden rounded-2xl ${
+              className={`reveal-item relative overflow-hidden rounded-2xl ${
                 i === 0
-                  ? "col-span-2 aspect-4/3 md:row-span-2 md:aspect-auto"
+                  ? `col-span-2 aspect-4/3 ${featuredRows} md:aspect-auto`
                   : lastIsOrphan && i === items.length - 1
                     ? "col-span-2 aspect-2/1 md:col-span-1 md:aspect-square"
                     : "aspect-square"
@@ -52,6 +56,6 @@ export default function Gallery({ lang }: { lang: Lang }) {
           ))}
         </ul>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

@@ -1,11 +1,11 @@
-import { business, footer, mapLinks, t, ui, type Lang } from "@/content";
+import { business, primaryPhone, footer, mapLinks, t, ui, type Lang } from "@/content";
 import Icon from "./Icons";
 
 export default function Footer({ lang }: { lang: Lang }) {
   const socials = [
     { href: business.facebook, icon: "facebook", label: "Facebook", external: true },
     { href: mapLinks.google, icon: "pin", label: "Google Maps", external: true },
-    { href: business.phone.tel, icon: "phone", label: business.phone.display, external: false },
+    { href: primaryPhone.tel, icon: "phone", label: primaryPhone.display, external: false },
   ];
 
   return (
